@@ -19,17 +19,21 @@ public class StringData {
                 BufferedReader reader =
                         new BufferedReader(new FileReader(fileArrayList.get(i)));
                 String strLine;
+                int m = 0;
                 while ((strLine = reader.readLine()) != null) {
                     if (arrayListToFile.size() != 0) {
-                        for (int j = 0; j < arrayListToFile.size(); j++) {
+                        for (int j = m; j < arrayListToFile.size(); j++) {
                             if (sortType && strLine.compareTo(arrayListToFile.get(j)) <= 0) {
                                 arrayListToFile.add(j, strLine);
+                                m = j;
                                 break;
                             } else if (!sortType && strLine.compareTo(arrayListToFile.get(j)) >= 0) {
                                 arrayListToFile.add(j, strLine);
+                                m = j;
                                 break;
                             } else if (j == (arrayListToFile.size() - 1)) {
                                 arrayListToFile.add(strLine);
+                                m = j;
                                 break;
                             }
                         }
@@ -37,7 +41,7 @@ public class StringData {
                 }
             } catch (FileNotFoundException e) {
                 System.out.println("Не удается найти указанный файл: " + fileArrayList.get(i));
-                System.out.println("Часть данных может быть утерянна.");
+                System.out.println("Часть данных может быть утеряна.");
             } catch (IOException e) {
                 e.printStackTrace();
             }

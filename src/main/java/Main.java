@@ -25,8 +25,10 @@ public class Main {
                 System.out.println("Тип данных неопределен");
 
             else if (typeData.equals("s")) {
-                StringData stringData = new StringData(fileArrayList, sorting);
-                stringData.readWriteWithSort();
+//                StringData stringData = new StringData(fileArrayList, sorting);
+//                stringData.readWriteWithSort();
+                WorkWithFile workWithFile = new WorkWithFile(fileArrayList, sorting);
+                workWithFile.readWriteWithSort();
 
             } else if (typeData.equals("i")) {
                 IntegerData integerData = new IntegerData(fileArrayList, sorting);
