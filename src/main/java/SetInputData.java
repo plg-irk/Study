@@ -1,6 +1,5 @@
 import java.io.*;
 import java.nio.file.Files;
-import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class SetInputData {
@@ -23,7 +22,7 @@ public class SetInputData {
             for (int i = 0; i < 10000; i++) {
                 num = i + 1;
                 writer.println(num);
-                System.out.println(num);
+//                System.out.println(num);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,35 +35,51 @@ public class SetInputData {
             e.printStackTrace();
         }
 
+        long time = System.currentTimeMillis();
         try (RandomAccessFile fIn =
                      new RandomAccessFile(fileIn, "rw");
              RandomAccessFile fOut =
                      new RandomAccessFile(fileOut, "rw");
              PrintWriter result = new PrintWriter(new FileWriter(fileOut))) {
-//            fOut.setLength(fIn.length());
-            System.out.println("in length= " + fIn.length() + " out length= " + fOut.length());
+//            System.out.println("in length= " + fIn.length() + " out length= " + fOut.length());
 
-            for (int j = 0; j < count; j++) {
-                String str = null;
-                long posCurrent = 0;
-                long posReadIn = 0;
-//                long posReadCurrent = 0;
-
-                for (int i = 0; i < count - j; i++) {
-                    fIn.seek(posCurrent);
-                    posReadIn = fIn.getFilePointer();
-//                    System.out.println("posReadIn= " + posReadIn);
-                    str = fIn.readLine();
-                    posCurrent = fIn.getFilePointer();
-//                    System.out.println("str= " + str + " posCurrent= " + posCurrent);
-                }
-//                System.out.println("posCurrent= " + posReadIn);
-                result.println(str);
-                fIn.setLength(posReadIn);
+            long posReadIn = fIn.length();
+            long posReadOut = fIn.length();
+            long pos;
+            String str1 = null;
+            String str2 = null;
+            for (int j = 0; j <= posReadOut; j++) {
+                if (fIn.length() != 0) {
+                    for (int i = 0; i <= posReadOut; i++) {
+                        pos = posReadOut - i;
+                        fIn.seek(pos);
+                        if (pos != 0) {
+                            str1 = fIn.readLine();
+                            str2 = fIn.readLine();
+//                            System.out.println("str1= " + str1 + " str2= " + str2);
+//
+                            if ((str1 == null || str1.length() == 0) && (str2 != null)) {
+//                                System.out.println("posReadIn= " + (posReadIn - i));
+                                result.println(str2);
+                                fIn.setLength(posReadIn - i);
+//                                str2 = str1;
+                                break;
+                            }
+//                            str2 = str1;
+                        } else {
+                            fIn.seek(0);
+                            result.println(fIn.readLine());
+                            fIn.setLength(0);
+                            break;
+                        }
+                    }
+                } else break;
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Время работы обратного чтения - записи: " +
+                ((System.currentTimeMillis() - time)) + " ms");
     }
 }
