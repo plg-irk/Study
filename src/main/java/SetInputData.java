@@ -8,7 +8,7 @@ public class SetInputData {
 
         int num;
         long count = 0;
-        File fileIn = new File("in5.txt");
+        File fileIn = new File("inBigData.txt");
         File fileOut = new File("reversed.txt");
 
         try (
@@ -19,7 +19,7 @@ public class SetInputData {
         }
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileIn))) {
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 100000000; i++) {
                 num = i + 1;
                 writer.println(num);
 //                System.out.println(num);
@@ -48,6 +48,7 @@ public class SetInputData {
             long pos;
             String str1 = null;
             String str2 = null;
+            int numberLine = 0;
             for (int j = 0; j <= posReadOut; j++) {
                 if (fIn.length() != 0) {
                     for (int i = 0; i <= posReadOut; i++) {
@@ -62,6 +63,9 @@ public class SetInputData {
 //                                System.out.println("posReadIn= " + (posReadIn - i));
                                 result.println(str2);
                                 fIn.setLength(posReadIn - i);
+                                System.out.println("Time write line= " + numberLine + " " +
+                                        ((System.currentTimeMillis() - time)) + " ms");
+                                numberLine += 1;
 //                                str2 = str1;
                                 break;
                             }

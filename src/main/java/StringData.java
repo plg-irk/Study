@@ -14,6 +14,8 @@ public class StringData {
     public void readWriteWithSort() {
 
         ArrayList<String> arrayListToFile = new ArrayList<>();
+
+        long time = System.currentTimeMillis();
         for (int i = 1; i < fileArrayList.size(); i++) {
             try {
                 BufferedReader reader =
@@ -46,6 +48,7 @@ public class StringData {
                 e.printStackTrace();
             }
         }
+        System.out.println("Время сортировки и записи: " + (System.currentTimeMillis() - time));
 
         try (PrintWriter writer =
                      new PrintWriter(new FileWriter(fileArrayList.get(0)))) {

@@ -1,16 +1,18 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class WorkWithFile {
+public class StringDadaFile {
     ArrayList<String> fileArrayList;
     boolean sortType;
 
-    public WorkWithFile(ArrayList<String> fileArrayList, boolean sortType) {
+    public StringDadaFile(ArrayList<String> fileArrayList, boolean sortType) {
         this.fileArrayList = fileArrayList;
         this.sortType = sortType;
     }
 
-    public void readWriteWithSort() {
+    public void mergeSortBigFile() {
 
         try (PrintWriter writer =
                      new PrintWriter(new FileWriter(fileArrayList.get(0)))) {
@@ -18,6 +20,7 @@ public class WorkWithFile {
             e.printStackTrace();
         }
 
+        long time = System.currentTimeMillis();
         for (int i = 1; i < fileArrayList.size(); i++) {
             try (PrintWriter tempFile =
                          new PrintWriter("temp.txt");
@@ -56,9 +59,7 @@ public class WorkWithFile {
                             strOut = readerOut.readLine();
                         }
                     }
-
                 }
-
             } catch (FileNotFoundException e) {
                 System.out.println("Не удается найти указанный файл: " + fileArrayList.get(i));
                 System.out.println("Часть данных может быть утеряна.");
@@ -66,11 +67,10 @@ public class WorkWithFile {
                 e.printStackTrace();
             }
 
-            try (
-                    PrintWriter writer =
-                            new PrintWriter(new FileWriter(fileArrayList.get(0)));
-                    BufferedReader reader =
-                            new BufferedReader(new FileReader("temp.txt"))) {
+            try (PrintWriter writer =
+                         new PrintWriter(new FileWriter(fileArrayList.get(0)));
+                 BufferedReader reader =
+                         new BufferedReader(new FileReader("temp.txt"))) {
                 String strReader;
                 System.out.println("begin write");
                 while ((strReader = reader.readLine()) != null) {
@@ -81,5 +81,23 @@ public class WorkWithFile {
                 e.printStackTrace();
             }
         }
+        System.out.println("Время сортировки: " + (System.currentTimeMillis() - time) + "ms");
+
+        if (!sortType) {
+            ReverseUseStream reverseUseStream =
+                    new ReverseUseStream(new File("temp.txt"),
+                            new File(fileArrayList.get(0)));
+            System.out.println("Реверс");
+            reverseUseStream.reversedUseStream();
+        }
+
+        Path path = Path.of("temp.txt");
+        try {
+            Files.delete(path);
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
     }
 }
+

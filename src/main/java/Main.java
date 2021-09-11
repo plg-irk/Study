@@ -27,8 +27,8 @@ public class Main {
             else if (typeData.equals("s")) {
 //                StringData stringData = new StringData(fileArrayList, sorting);
 //                stringData.readWriteWithSort();
-                WorkWithFile workWithFile = new WorkWithFile(fileArrayList, sorting);
-                workWithFile.readWriteWithSort();
+                StringDadaFile stringDadaFile = new StringDadaFile(fileArrayList, sorting);
+                stringDadaFile.mergeSortBigFile();
 
             } else if (typeData.equals("i")) {
                 IntegerData integerData = new IntegerData(fileArrayList, sorting);
