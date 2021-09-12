@@ -34,7 +34,7 @@ public class ReverseUseStream {
         try (
                 PrintWriter writer = new PrintWriter(new FileWriter(fileOut))
         ) {
-            List<String> array = new ArrayList<>();
+            List<String> array;
             int k = (int) (count / number);
             for (long j = 1; j <= k; j++) {
                 try (Stream<String> lines = Files.lines(fileIn.toPath())) {

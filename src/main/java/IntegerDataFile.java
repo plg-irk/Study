@@ -37,34 +37,57 @@ public class IntegerDataFile {
                 strIn = readerIn.readLine();
 
                 while (strOut != null || strIn != null) {
-                    try {
-                        if (strOut != null) {
-                            while (strIn != null && (Integer.parseInt(strIn) -
-                                    Integer.parseInt(strOut) <= 0)) {
-                                tempFile.println(strIn);
-                                strIn = readerIn.readLine();
-                            }
-                        } else {
-                            while (strIn != null) {
-                                tempFile.println(strIn);
+                    if (strOut != null) {
+                        while (strIn != null) {
+                            try {
+                                if (Integer.parseInt(strIn) -
+                                        Integer.parseInt(strOut) <= 0) {
+                                    tempFile.println(Integer.parseInt(strIn));
+                                    strIn = readerIn.readLine();
+                                } else break;
+                            } catch (NumberFormatException e) {
+                                System.out.println("Ошибка данных в файле: " + fileArrayList.get(i));
+                                System.out.println("Возможна потеря данных.");
                                 strIn = readerIn.readLine();
                             }
                         }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Ошибка данных в файле: " + fileArrayList.get(i));
-                        System.out.println("Возможна потеря данных.");
-                        strIn = readerIn.readLine();
+                    } else {
+                        while (strIn != null) {
+                            try {
+                                tempFile.println(Integer.parseInt(strIn));
+                                strIn = readerIn.readLine();
+                            } catch (NumberFormatException e) {
+                                System.out.println("Ошибка данных в файле: " + fileArrayList.get(i));
+                                System.out.println("Возможна потеря данных.");
+                                strIn = readerIn.readLine();
+                            }
+                        }
                     }
+
                     if (strIn != null) {
-                        while (strOut != null && (Integer.parseInt(strOut) -
-                                Integer.parseInt(strIn) <= 0)) {
-                            tempFile.println(strOut);
-                            strOut = readerOut.readLine();
+                        while (strOut != null) {
+                            try {
+                                if ((Integer.parseInt(strOut) -
+                                        Integer.parseInt(strIn) <= 0)) {
+                                    tempFile.println(Integer.parseInt(strOut));
+                                    strOut = readerOut.readLine();
+                                } else break;
+                            } catch (NumberFormatException e) {
+                                System.out.println("Ошибка данных в файле: " + fileArrayList.get(i));
+                                System.out.println("Возможна потеря данных.");
+                                strOut = readerOut.readLine();
+                            }
                         }
                     } else {
                         while (strOut != null) {
-                            tempFile.println(strOut);
-                            strOut = readerOut.readLine();
+                            try {
+                                tempFile.println(Integer.parseInt(strOut));
+                                strOut = readerOut.readLine();
+                            } catch (NumberFormatException e) {
+                                System.out.println("Ошибка данных в файле: " + fileArrayList.get(i));
+                                System.out.println("Возможна потеря данных.");
+                                strOut = readerOut.readLine();
+                            }
                         }
                     }
                 }
