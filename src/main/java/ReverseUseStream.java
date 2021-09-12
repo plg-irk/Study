@@ -36,12 +36,9 @@ public class ReverseUseStream {
         ) {
             List<String> array = new ArrayList<>();
             int k = (int) (count / number);
-            System.out.println("k= " + k);
             for (long j = 1; j <= k; j++) {
                 try (Stream<String> lines = Files.lines(fileIn.toPath())) {
-                    System.out.println("begin= " + (count - number * j));
                     array = (lines.skip(count - number * j).limit(number).toList());
-                    System.out.println("   size= " + array.size());
                     for (int i = 0; i < number; i++) {
                         writer.println(array.get((int) (number - 1 - i)));
                     }
@@ -50,7 +47,6 @@ public class ReverseUseStream {
                 }
             }
             long intLines = count - number * k;
-            System.out.println("intLines= " + intLines);
             Stream<String> lines = Files.lines(fileIn.toPath());
             array = lines.limit(intLines).toList();
             for (int i = 1; i <= intLines; i++) {

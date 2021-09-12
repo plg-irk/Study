@@ -3,11 +3,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class StringDadaFile {
+public class StringDataFile {
     ArrayList<String> fileArrayList;
     boolean sortType;
 
-    public StringDadaFile(ArrayList<String> fileArrayList, boolean sortType) {
+    public StringDataFile(ArrayList<String> fileArrayList, boolean sortType) {
         this.fileArrayList = fileArrayList;
         this.sortType = sortType;
     }

@@ -25,14 +25,12 @@ public class Main {
                 System.out.println("Тип данных неопределен");
 
             else if (typeData.equals("s")) {
-//                StringData stringData = new StringData(fileArrayList, sorting);
-//                stringData.readWriteWithSort();
-                StringDadaFile stringDadaFile = new StringDadaFile(fileArrayList, sorting);
+                StringDataFile stringDadaFile = new StringDataFile(fileArrayList, sorting);
                 stringDadaFile.mergeSortBigFile();
 
             } else if (typeData.equals("i")) {
-                IntegerData integerData = new IntegerData(fileArrayList, sorting);
-                integerData.readWriteWithSort();
+                IntegerDataFile integerDataFile = new IntegerDataFile(fileArrayList, sorting);
+                integerDataFile.mergeSortBigFile();
             }
         }
     }
