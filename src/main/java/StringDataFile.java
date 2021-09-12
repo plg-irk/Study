@@ -13,6 +13,7 @@ public class StringDataFile {
     }
 
     public void mergeSortBigFile() {
+//        Сортировка попарно выходной файл с каждым входным, сравнивая элементы в разных файлах.
 
         try (PrintWriter writer =
                      new PrintWriter(new FileWriter(fileArrayList.get(0)))) {
@@ -29,7 +30,7 @@ public class StringDataFile {
                  BufferedReader readerIn =
                          new BufferedReader(new FileReader(fileArrayList.get(i)))) {
 
-                System.out.println(fileArrayList.get(i));
+                System.out.println("Обработка файла: " +fileArrayList.get(i));
                 String strOut;
                 String strIn;
 
@@ -72,7 +73,6 @@ public class StringDataFile {
                  BufferedReader reader =
                          new BufferedReader(new FileReader("temp.txt"))) {
                 String strReader;
-                System.out.println("begin write");
                 while ((strReader = reader.readLine()) != null) {
                     writer.println(strReader);
                 }
@@ -87,7 +87,7 @@ public class StringDataFile {
             ReverseUseStream reverseUseStream =
                     new ReverseUseStream(new File("temp.txt"),
                             new File(fileArrayList.get(0)));
-            System.out.println("Реверс");
+            System.out.println("Сортировка по убыванию");
             reverseUseStream.reversedUseStream();
         }
 

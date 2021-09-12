@@ -1,6 +1,5 @@
 import java.io.*;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,6 +14,7 @@ public class ReverseUseStream {
     }
 
     public void reversedUseStream() {
+//        Чтение блоками по 1 млн. строк и запись в обратном порядке.
         long count = 0;
         try (PrintWriter temp =
                      new PrintWriter(new FileWriter(fileOut))) {
@@ -24,7 +24,7 @@ public class ReverseUseStream {
 
         try (Stream<String> lines = Files.lines(fileIn.toPath())) {
             count = lines.count();
-            System.out.println("count= " + count);
+            System.out.println("Кол-во строк к обработке: " + count);
         } catch (IOException e) {
             e.printStackTrace();
         }

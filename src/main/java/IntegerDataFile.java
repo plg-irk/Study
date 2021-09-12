@@ -13,6 +13,7 @@ public class IntegerDataFile {
     }
 
     public void mergeSortBigFile() {
+//        Сортировка попарно выходной файл с каждым входным. Запись меньшего элемента.
 
         try (PrintWriter writer =
                      new PrintWriter(new FileWriter(fileArrayList.get(0)))) {
@@ -29,7 +30,7 @@ public class IntegerDataFile {
                  BufferedReader readerIn =
                          new BufferedReader(new FileReader(fileArrayList.get(i)))) {
 
-                System.out.println(fileArrayList.get(i));
+                System.out.println("Обработка файла: " + fileArrayList.get(i));
                 String strOut;
                 String strIn;
 
@@ -120,7 +121,7 @@ public class IntegerDataFile {
             ReverseUseStream reverseUseStream =
                     new ReverseUseStream(new File("temp.txt"),
                             new File(fileArrayList.get(0)));
-            System.out.println("Реверс");
+            System.out.println("Сортировка по убыванию");
             reverseUseStream.reversedUseStream();
         }
 
