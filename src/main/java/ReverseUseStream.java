@@ -31,6 +31,7 @@ public class ReverseUseStream {
 
         long time = System.currentTimeMillis();
         long number = 1000000;
+
         try (
                 PrintWriter writer = new PrintWriter(new FileWriter(fileOut))
         ) {

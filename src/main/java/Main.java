@@ -15,16 +15,22 @@ public class Main {
             else fileArrayList.add(str);
         }
 
-        if (fileArrayList.size() == 0)
+        if (fileArrayList.size() == 0) {
             System.out.println("Отсутствует выходной файл.");
-        else if (fileArrayList.size() <= 1)
+            HelpDoc helpDoc = new HelpDoc();
+            helpDoc.helpDoc();
+        } else if (fileArrayList.size() <= 1) {
             System.out.println("Необходимо не менее одного входного файла.");
-        else {
+            HelpDoc helpDoc = new HelpDoc();
+            helpDoc.helpDoc();
+        } else {
 
-            if (typeData == null)
+            if (typeData == null) {
                 System.out.println("Тип входных данных неопределен");
+                HelpDoc helpDoc = new HelpDoc();
+                helpDoc.helpDoc();
 
-            else if (typeData.equals("s")) {
+            } else if (typeData.equals("s")) {
                 StringDataFile stringDadaFile = new StringDataFile(fileArrayList, sorting);
                 stringDadaFile.mergeSortBigFile();
 
