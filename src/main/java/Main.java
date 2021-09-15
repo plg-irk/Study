@@ -16,21 +16,21 @@ public class Main {
         }
 
         if (fileArrayList.size() == 0)
-            System.out.println("Отсутствует имя выходного файла.");
+            System.out.println("Отсутствует выходной файл.");
         else if (fileArrayList.size() <= 1)
             System.out.println("Необходимо не менее одного входного файла.");
         else {
 
             if (typeData == null)
-                System.out.println("Тип данных неопределен");
+                System.out.println("Тип входных данных неопределен");
 
             else if (typeData.equals("s")) {
-                StringData stringData = new StringData(fileArrayList, sorting);
-                stringData.readWriteWithSort();
+                StringDataFile stringDadaFile = new StringDataFile(fileArrayList, sorting);
+                stringDadaFile.mergeSortBigFile();
 
             } else if (typeData.equals("i")) {
-                IntegerData integerData = new IntegerData(fileArrayList, sorting);
-                integerData.readWriteWithSort();
+                IntegerDataFile integerDataFile = new IntegerDataFile(fileArrayList, sorting);
+                integerDataFile.mergeSortBigFile();
             }
         }
     }
