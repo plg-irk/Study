@@ -30,7 +30,7 @@ public class IntegerDataFile {
                  BufferedReader readerIn =
                          new BufferedReader(new FileReader(fileArrayList.get(i)))) {
 
-                System.out.println("Обработка файла: " + fileArrayList.get(i));
+                System.out.println("Обработка входного файла: " + fileArrayList.get(i));
                 String strOut;
                 String strIn;
 
